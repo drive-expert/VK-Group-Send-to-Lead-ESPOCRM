@@ -39,11 +39,11 @@ def create_lead_espo(data_dict):
     data = data_dict
     res = requests.post(url_c, data=data)
     if res.text == 'true':
-        print(f'Лид создан{res.text}')
-        return 'true'
+        print(f'Лид создан:{res.text}')
+        return 'lead create'
     else:
-        print(f'Лид НЕ создан{res.__dict__}')
-        return 'false'
+        print(f'Лид НЕ создан:{res.__dict__}')
+        return 'lead not create'
 
 def vk_mess_and_lead_create(group_id):
     data_dict ={}
@@ -69,7 +69,6 @@ def vk_mess_and_lead_create(group_id):
     if resID.status_code == 200:
         jresID = resID.json()
         for i in jresID['response']:
-
             print('Добавляем данные:')
             print(f"Название группы VK: {i['name']}")
             data_dict["vkURL"] = f"https://vk.com/{i['screen_name']}"
